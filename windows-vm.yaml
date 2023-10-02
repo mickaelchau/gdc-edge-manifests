@@ -1,0 +1,26 @@
+apiVersion: vm.cluster.gke.io/v1
+kind: VirtualMachineDisk
+metadata:
+  name: w2012-1-boot-dv
+spec:
+  size: 100Gi
+---
+apiVersion: vm.cluster.gke.io/v1
+kind: VirtualMachine
+metadata:
+  name: w2012-1
+spec:
+  osType: Windows
+  compute:
+    cpu:
+      vcpus: 4
+    memory: 
+      capacity: 1024Mi
+  disks:
+    - virtualMachineDiskName: w2012-1-boot-dv
+      boot: true
+    - virtualMachineDiskName: windows-iso
+    - virtualMachineDiskName: virtio-driver
+  interfaces:
+    - name: eth0
+      networkName: pod-network

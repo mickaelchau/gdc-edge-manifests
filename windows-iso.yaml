@@ -1,0 +1,10 @@
+apiVersion: vm.cluster.gke.io/v1
+kind: VirtualMachineDisk
+metadata:
+  name: windows-iso
+spec:
+  source:
+    http:
+      url: https://storage.googleapis.com/sjdfhasjas/win2010.iso
+  size: 10Gi
+  diskType: cdrom
